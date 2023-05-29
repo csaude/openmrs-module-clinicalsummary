@@ -10,8 +10,8 @@
 
 	<artifactId>clinicalsummary-api</artifactId>
 	<packaging>jar</packaging>
-	<name>Clinical Summary Module API</name>
-	<description>API project for ClinicalSummary</description>
+	<name>Clinical Summary Module Module API</name>
+	<description>API project for ClinicalSummaryModule</description>
 
 	<dependencies>
 	

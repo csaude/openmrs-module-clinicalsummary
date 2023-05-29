@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/api/clinicalsummary-api.iml" filepath="$PROJECT_DIR$/api/clinicalsummary-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/omod/clinicalsummary-omod.iml" filepath="$PROJECT_DIR$/omod/clinicalsummary-omod.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/openmrs-module-clinicalsummary.iml" filepath="$PROJECT_DIR$/.idea/openmrs-module-clinicalsummary.iml" />
     </modules>
   </component>
