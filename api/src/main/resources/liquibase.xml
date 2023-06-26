@@ -8,5 +8,42 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
-    
+    <changeSet id="CSA_20230529_10:00" author="Voloide">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="clinicalsummary_usage_report"/>
+            </not>
+        </preConditions>
+        <createTable tableName="clinicalsummary_usage_report">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="json" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="migration_status" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_migrated" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+            <column name="creator" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="voided" type="tinyint" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="voided_by" type="int" defaultValueNumeric="0" />
+            <column name="date_voided" type="datetime"/>
+            <column name="void_reason" type="varchar(255)" defaultValue="null"/>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="datetime"/>
+            <column name="uuid" type="char(38)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

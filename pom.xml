@@ -7,12 +7,12 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Clinical Summary Module</name>
-	<description>Este modulo realiza tarefas auxiliares ao aplicativo do sumario clinico</description>
-	<url>https://wiki.openmrs.org/display/docs/Clinical+Summary+Module+Module</url>
+	<description>Process clinical summary usage report and send to DHIS2</description>
+	<url>https://wiki.openmrs.org/display/docs/Clinical+Summary+Module+Module+Module</url>
 	
 	<developers>
 		<developer>
-			<name>Voloide</name>
+			<name>Voloide Tamele</name>
 		</developer>
 	</developers>
 	

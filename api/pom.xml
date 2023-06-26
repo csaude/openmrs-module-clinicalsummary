@@ -11,7 +11,7 @@
 	<artifactId>clinicalsummary-api</artifactId>
 	<packaging>jar</packaging>
 	<name>Clinical Summary Module API</name>
-	<description>API project for ClinicalSummary</description>
+	<description>API project for ClinicalSummaryModule</description>
 
 	<dependencies>
 	
@@ -79,6 +79,16 @@
 				<filtering>true</filtering>
 			</testResource>
 		</testResources>
-	</build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
