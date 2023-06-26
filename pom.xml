@@ -6,7 +6,7 @@
 	<artifactId>clinicalsummary</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Clinical Summary Module Module</name>
+	<name>Clinical Summary Module</name>
 	<description>Process clinical summary usage report and send to DHIS2</description>
 	<url>https://wiki.openmrs.org/display/docs/Clinical+Summary+Module+Module+Module</url>
 	

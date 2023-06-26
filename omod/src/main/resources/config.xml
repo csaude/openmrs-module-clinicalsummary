@@ -6,7 +6,7 @@
 	<id>${project.parent.artifactId}</id>
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
-	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
+	<package>${project.parent.groupId}</package>
 	<author>Voloide Tamele</author>
 	<description>
 		${project.parent.description}
@@ -17,7 +17,7 @@
 
 	
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.ClinicalSummaryModuleActivator</activator>
+	<activator>${project.parent.groupId}.ClinicalSummaryModuleActivator</activator>
 	
 	
 	<!-- Maps hibernate file's, if present -->

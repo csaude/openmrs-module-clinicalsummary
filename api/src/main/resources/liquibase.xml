@@ -8,10 +8,10 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
-    <changeSet id="CSA_20230526_10:00" author="Voloide">
+    <changeSet id="CSA_20230529_10:00" author="Voloide">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="clinical_summary_usage_report"/>
+                <tableExists tableName="clinicalsummary_usage_report"/>
             </not>
         </preConditions>
         <createTable tableName="clinicalsummary_usage_report">
@@ -36,6 +36,7 @@
             <column name="voided" type="tinyint" defaultValueNumeric="0">
                 <constraints nullable="false"/>
             </column>
+            <column name="voided_by" type="int" defaultValueNumeric="0" />
             <column name="date_voided" type="datetime"/>
             <column name="void_reason" type="varchar(255)" defaultValue="null"/>
             <column name="changed_by" type="int"/>
