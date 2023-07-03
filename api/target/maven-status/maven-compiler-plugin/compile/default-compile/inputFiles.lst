@@ -1,0 +1,12 @@
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/ClinicalSummaryModule.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/ClinicalSummaryModuleActivator.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/task/CsaUsageReportMigration.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/util/EmailClientUtil.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/impl/ClinicalSummaryModuleServiceImpl.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/db/hibernate/HibernateClinicalSummaryModuleDAO.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/model/CsaUsageReport.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/util/Utilities.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/util/DateUtils.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/db/ClinicalSummaryModuleDAO.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/task/ClinicalSummaryReportProcessorTask.java
+/home/voloide/PROJECTS/DEV/WORKSPACE/JWORKSPACE/openmrs-module-clinicalsummary/api/src/main/java/org/openmrs/module/clinicalsummary/api/ClinicalSummaryModuleService.java
