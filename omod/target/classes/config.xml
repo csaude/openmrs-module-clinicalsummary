@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<!-- Module Properties -->
+	<id>clinicalsummary</id>
+	<name>Clinical Summary Module</name>
+	<version>1.0-SNAPSHOT</version>
+	<package>org.openmrs.module.clinicalsummary</package>
+	<author>Voloide Tamele</author>
+	<description>
+		Process clinical summary usage report and send to DHIS2
+	</description>
+	<updateURL>https://modules.openmrs.org/modules/download/clinicalsummary/update.rdf</updateURL>
+	<require_version>2.3.3</require_version>
+	<!-- / Module Properties -->
+
+	
+	<!-- Module Activator -->
+	<activator>org.openmrs.module.clinicalsummary.ClinicalSummaryModuleActivator</activator>
+	
+	
+	<!-- Maps hibernate file's, if present -->
+	<mappingFiles>
+				
+		ClinicalSummaryModule.hbm.xml
+				
+	</mappingFiles>
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with clinicalsummary. -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+</module>
+

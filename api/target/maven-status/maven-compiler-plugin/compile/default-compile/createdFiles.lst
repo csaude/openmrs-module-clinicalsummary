@@ -1,0 +1,12 @@
+org/openmrs/module/clinicalsummary/ClinicalSummaryModuleActivator.class
+org/openmrs/module/clinicalsummary/api/util/EmailClientUtil.class
+org/openmrs/module/clinicalsummary/api/ClinicalSummaryModuleService.class
+org/openmrs/module/clinicalsummary/api/db/hibernate/HibernateClinicalSummaryModuleDAO.class
+org/openmrs/module/clinicalsummary/api/model/CsaUsageReport.class
+org/openmrs/module/clinicalsummary/api/task/ClinicalSummaryReportProcessorTask.class
+org/openmrs/module/clinicalsummary/api/impl/ClinicalSummaryModuleServiceImpl.class
+org/openmrs/module/clinicalsummary/ClinicalSummaryModule.class
+org/openmrs/module/clinicalsummary/api/util/Utilities.class
+org/openmrs/module/clinicalsummary/api/util/DateUtils.class
+org/openmrs/module/clinicalsummary/api/task/CsaUsageReportMigration.class
+org/openmrs/module/clinicalsummary/api/db/ClinicalSummaryModuleDAO.class
