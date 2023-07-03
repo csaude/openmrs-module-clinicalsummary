@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.openmrs.module:webservices.rest-omod-common:tests:2.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/webservices.rest-omod-common/2.1/webservices.rest-omod-common-2.1-tests.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/webservices.rest-omod-common/2.1/webservices.rest-omod-common-2.1-test-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/webservices.rest-omod-common/2.1/webservices.rest-omod-common-2.1-test-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

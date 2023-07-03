@@ -1,4 +1,4 @@
-package org.openmrs.module.clinicalsummary;
+package org.openmrs.module.clinicalsummary.web.controller;
 
 import org.openmrs.api.context.Context;
 import org.openmrs.module.clinicalsummary.api.ClinicalSummaryModuleService;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @Controller
-@RestController(value = "/module/clinicalsummary")
+@RequestMapping("/rest/v1/clinicalsummary")
 public class ClinicalSummaryReportController {
 
     @ResponseBody

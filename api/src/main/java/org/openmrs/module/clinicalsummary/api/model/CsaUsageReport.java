@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "clinicalsummary_usage_report")
-public class CsaUsageReport extends BaseOpenmrsData {
+public class CsaUsageReport extends BaseOpenmrsMetadata {
 
     public static final String PENDING = "PENDING";
     public static final String MIGRATED = "MIGRATED";
