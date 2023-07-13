@@ -47,7 +47,7 @@ public class ClinicalSummaryModuleServiceImpl extends BaseOpenmrsService impleme
 
     @Override
     public CsaUsageReport save(CsaUsageReport usageReport) {
-        if (usageReport.getId() <= 0) {
+        if (usageReport.getId() == null) {
             return this.dao.save(usageReport);
         }else {
             this.dao.update(usageReport);
