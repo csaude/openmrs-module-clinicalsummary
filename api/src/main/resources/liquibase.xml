@@ -46,4 +46,17 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="CSA_20230713_12:40"  author="ialuj" context="rel3">
+        <preConditions onFail="MARK_RAN">
+                <tableExists tableName="clinicalsummary_usage_report"/>
+        </preConditions>
+        <comment>
+            Adding column voided_by on table clinicalsummary_usage_report
+        </comment>
+        <addColumn tableName="clinicalsummary_usage_report">
+            <column name="voided_by" type="int">
+                 <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
