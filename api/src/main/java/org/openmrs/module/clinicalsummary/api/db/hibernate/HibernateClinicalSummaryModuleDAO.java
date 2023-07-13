@@ -13,6 +13,9 @@
  */
 package org.openmrs.module.clinicalsummary.api.db.hibernate;
 
+import java.lang.reflect.Method;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
@@ -20,30 +23,27 @@ import org.hibernate.SessionFactory;
 import org.openmrs.module.clinicalsummary.api.db.ClinicalSummaryModuleDAO;
 import org.openmrs.module.clinicalsummary.api.model.CsaUsageReport;
 
-import java.lang.reflect.Method;
-import java.util.List;
-
 /**
- * It is a default implementation of  {@link ClinicalSummaryModuleDAO}.
+ * It is a default implementation of {@link ClinicalSummaryModuleDAO}.
  */
 public class HibernateClinicalSummaryModuleDAO implements ClinicalSummaryModuleDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
-	
+
 	private SessionFactory sessionFactory;
-	
+
 	/**
-     * @param sessionFactory the sessionFactory to set
-     */
-    public void setSessionFactory(SessionFactory sessionFactory) {
-	    this.sessionFactory = sessionFactory;
-    }
-    
+	 * @param sessionFactory the sessionFactory to set
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	/**
-     * @return the sessionFactory
-     */
-    public SessionFactory getSessionFactory() {
-	    return sessionFactory;
-    }
+	 * @return the sessionFactory
+	 */
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 
 	private org.hibernate.Session getCurrentSession() {
 		try {
@@ -67,7 +67,8 @@ public class HibernateClinicalSummaryModuleDAO implements ClinicalSummaryModuleD
 
 	@Override
 	public CsaUsageReport save(CsaUsageReport report) {
-		return (CsaUsageReport) this.getCurrentSession().save(report);
+		this.getCurrentSession().save(report);
+		return report;
 	}
 
 	@Override
