@@ -2,6 +2,7 @@ package org.openmrs.module.clinicalsummary.api.task;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.http.auth.AuthenticationException;
 import org.openmrs.api.context.Context;
 import org.openmrs.scheduler.tasks.AbstractTask;
 
@@ -20,7 +21,7 @@ public class ClinicalSummaryReportProcessorTask extends AbstractTask {
         Context.openSession();
         try {
             this.csaUsageReportMigration.doMigration();
-        } catch (IOException e) {
+        } catch (IOException | AuthenticationException e) {
             log.error("Could not send reports: ",e);
             throw new RuntimeException(e);
         }
