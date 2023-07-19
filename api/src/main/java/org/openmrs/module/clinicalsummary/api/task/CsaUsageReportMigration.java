@@ -1,17 +1,25 @@
 package org.openmrs.module.clinicalsummary.api.task;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthenticationException;
+import org.apache.http.auth.Credentials;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.util.EntityUtils;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.clinicalsummary.api.ClinicalSummaryModuleService;
 import org.openmrs.module.clinicalsummary.api.model.CsaUsageReport;
@@ -28,47 +36,52 @@ public class CsaUsageReportMigration {
         this.csaUsageReportService = Context.getService(ClinicalSummaryModuleService.class);
     }
 
-    private boolean sendReport (CsaUsageReport csaUsageReport) throws IOException, AuthenticationException {
-       String URLBase = "http://localhost:8099/dhis"; // 172.20.0.2//172.19.0.4:8080
-       String URLPath = "/api/events";
-       String URL = URLBase + URLPath;
-        Boolean response = false;
-        DefaultHttpClient httpclient = new DefaultHttpClient();
-        
+    public int postDataToDHISEndpoint(CsaUsageReport csaUsageReport) {
+        String url = Context.getAdministrationService().getGlobalProperty("clinicalsummaryusagereportdhis.url");
+        String user = Context.getAdministrationService().getGlobalProperty("clinicalsummaryusagereportdhis.user");
+        String pass = Context.getAdministrationService().getGlobalProperty("clinicalsummaryusagereportdhis.pass");
+
+        int responsecode = 0;
+
+        String URLPath = "/api/events";
+        String URL = url + URLPath;
+
+        DefaultHttpClient client = null;
+
         try {
-            HttpPost httpPost = new HttpPost(URL);
-            System.out.println(URL);
-            String username = "admin";
-            String password = "district";
-            //UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(username, password);
-            BasicScheme scheme = new BasicScheme();
-            Header authorizationHeader = scheme.authenticate(new org.apache.http.auth.UsernamePasswordCredentials(username, password), httpPost);
-            httpPost.setHeader(authorizationHeader);
-            httpPost.setHeader("Accept", "application/json");
-            httpPost.setHeader("Content-Type", "application/json");
-            
-            httpPost.setEntity(new ByteArrayEntity(csaUsageReport.getJson().getBytes("UTF8")));
-            
-            //httpPost.setEntity((HttpEntity) csaUsageReport);
-            // System.out.println("Executing request: " + httpGet.getRequestLine());
-            // System.out.println(response);
-            // response = httpclient.execute(httpGet,responseHandler);
-            HttpResponse responseRequest = (HttpResponse) httpclient.execute(httpPost);
+            java.net.URL dhisURL = new URL(URL);
 
-            if (((org.apache.http.HttpResponse) responseRequest).getStatusLine().getStatusCode() != 204
-                    && ((org.apache.http.HttpResponse) responseRequest).getStatusLine().getStatusCode() != 201) {
-                throw new RuntimeException(
-                        "Failed : HTTP error code : " + ((org.apache.http.HttpResponse) responseRequest).getStatusLine().getStatusCode());
-            }
+            String host = dhisURL.getHost();
+            int port = dhisURL.getPort();
 
-            httpclient.getConnectionManager().shutdown();
-            response = true;
+            HttpHost targetHost = new HttpHost(host, port, dhisURL.getProtocol());
+            client = new DefaultHttpClient();
+            BasicHttpContext localcontext = new BasicHttpContext();
+
+            HttpPost httpPost = new HttpPost(dhisURL.getPath());
+
+            Credentials creds = new UsernamePasswordCredentials(user, pass);
+            Header bs = new BasicScheme().authenticate(creds, httpPost, localcontext);
+
+            httpPost.addHeader("Authorization", bs.getValue());
+            httpPost.addHeader("Content-Type", "application/json");
+            httpPost.addHeader("Accept", "application/json");
+
+            httpPost.setEntity(new StringEntity(csaUsageReport.getJson()));
+
+            HttpResponse response = client.execute(targetHost, httpPost, localcontext);
+            //HttpEntity entity = response.getEntity();
+
+            responsecode = response.getStatusLine().getStatusCode();
+
+        } catch (Exception ex) {
+            log.error("Exception", ex);
         } finally {
-            httpclient.getConnectionManager().shutdown();
+            if (client != null)  client.getConnectionManager().shutdown();
         }
-        return true;
-    }
 
+        return responsecode;
+    }
     public void doMigration() throws IOException, AuthenticationException {
         log.info("Searching reports to send ...");
         this.usageReportList = this.doSearch();
@@ -76,8 +89,8 @@ public class CsaUsageReportMigration {
         log.info("Found "+ this.usageReportList.size() + " reports...");
         if (this.usageReportList != null && this.usageReportList.size() > 0) {
             for (CsaUsageReport csaUsageReport : this.usageReportList) {
-                boolean sent = this.sendReport(csaUsageReport);
-                if (sent) {
+                int sent = this.postDataToDHISEndpoint(csaUsageReport);
+                if (sent == 200) {
                     this.updateMigrationStatus(csaUsageReport);
                 }
             }
