@@ -18,62 +18,30 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="json" type="text">
-                <constraints nullable="false"/>
-            </column>
-            <column name="migration_status" type="varchar(200)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="date_migrated" type="datetime">
+            <column name="reporte" type="varchar(200)">
                 <constraints nullable="true"/>
             </column>
-            <column name="creator" type="int">
-                <constraints nullable="false"/>
+            <column name="unidade_sanitaria" type="varchar(200)">
+                <constraints nullable="true"/>
             </column>
-            <column name="date_created" type="datetime">
-                <constraints nullable="false"/>
+            <column name="user_name" type="varchar(200)">
+                <constraints nullable="true"/>
             </column>
-            <column name="voided" type="tinyint" defaultValueNumeric="0">
-                <constraints nullable="false"/>
+            <column name="terms" type="varchar(200)">
+                <constraints nullable="true"/>
             </column>
-            <column name="voided_by" type="int" defaultValueNumeric="0" />
-            <column name="date_voided" type="datetime"/>
-            <column name="void_reason" type="varchar(255)" defaultValue="null"/>
-            <column name="changed_by" type="int"/>
-            <column name="date_changed" type="datetime"/>
-            <column name="uuid" type="char(38)">
-                <constraints nullable="false" unique="true"/>
+            <column name="application_version" type="varchar(200)">
+                <constraints nullable="true"/>
             </column>
+            <column name="location" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="location_uuid" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+
+
         </createTable>
     </changeSet>
-    <changeSet id="CSA_20230719_10:00" author="Voloide">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select COUNT(*)
-                from global_property gp
-                where property IN ('clinicalsummaryusagereportdhis.url', 'clinicalsummaryusagereportdhis.user', 'clinicalsummaryusagereportdhis.pass');
-            </sqlCheck>
-        </preConditions>
-        <comment>Add Clinicalsummary app DHIS2 configuration for usage report Sync</comment>
-        <sql>
-            INSERT INTO global_property (property,property_value,description,uuid,datatype,datatype_config,preferred_handler,handler_config,date_changed,changed_by) VALUES
-                                        ('clinicalsummaryusagereportdhis.pass','district',NULL,'d6533e46-71ec-44b1-a883-9e2c6ed1006f',NULL,NULL,NULL,NULL,NULL,NULL),
-                                        ('clinicalsummaryusagereportdhis.url','http://10.10.12.99:8099/dhis',NULL,'0d92fb00-75e5-4a4d-b11e-6e48c9c8da08',NULL,NULL,NULL,NULL,NULL,NULL),
-                                        ('clinicalsummaryusagereportdhis.user','admin',NULL,'3a04cb47-e85e-44b7-88c5-0d01643c0046',NULL,NULL,NULL,NULL,NULL,NULL);
-        </sql>
-    </changeSet>
-    <changeSet id="CSA_20230719_16:00" author="Voloide">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                SELECT COUNT(*) FROM scheduler_task_config where schedulable_class =
-                'org.openmrs.module.clinicalsummary.api.task.ClinicalSummaryReportProcessorTask'
-            </sqlCheck>
-        </preConditions>
-        <comment>Add Clinicalsummary usage report Sync Task</comment>
-        <sql>
-            INSERT INTO scheduler_task_config (name,description,schedulable_class,start_time,start_time_pattern,repeat_interval,start_on_startup,started,created_by,date_created,changed_by,date_changed,uuid,last_execution_time) VALUES
-            ('Clinicalsummary Usage Report Synchronization','Synchronization of Clinicalsummary Usage Report to DHIS2 server','org.openmrs.module.clinicalsummary.api.task.ClinicalSummaryReportProcessorTask','2023-07-19 12:38:35','MM/dd/yyyy HH:mm:ss',60,1,1,1,'2023-07-19 12:41:30',271,'2023-07-19 16:48:35','b2ff9220-0746-4f21-91de-907332e90e6c','2023-07-19 16:48:35');
 
-        </sql>
-    </changeSet>
 </databaseChangeLog>

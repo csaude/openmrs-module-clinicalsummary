@@ -60,8 +60,14 @@ public class ClinicalSummaryModuleServiceImpl extends BaseOpenmrsService impleme
         return this.dao.getAll();
     }
 
-    @Override
-    public List<CsaUsageReport> getAllForMigration() {
-        return this.dao.getByMigrationStatus(CsaUsageReport.PENDING);
-    }
+	@Override
+	public List<CsaUsageReport> getAllForMigration() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * @Override public List<CsaUsageReport> getAllForMigration() { return
+	 * this.dao.getByMigrationStatus(CsaUsageReport.PENDING); }
+	 */
 }
