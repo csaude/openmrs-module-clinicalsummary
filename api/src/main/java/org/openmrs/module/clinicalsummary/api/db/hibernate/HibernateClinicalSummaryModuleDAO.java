@@ -76,10 +76,12 @@ public class HibernateClinicalSummaryModuleDAO implements ClinicalSummaryModuleD
 		this.getCurrentSession().update(report);
 	}
 
-	@Override
-	public List<CsaUsageReport> getByMigrationStatus(String migrationStatus) {
-		final String hql = "SELECT  l FROM CsaUsageReport l WHERE l.migrationStatus = :migrationStatus AND l.voided = 0";
-		final Query query = this.getCurrentSession().createQuery(hql).setParameter("migrationStatus", migrationStatus);
-		return query.list();
-	}
+	/*
+	 * @Override public List<CsaUsageReport> getByMigrationStatus(String
+	 * migrationStatus) { final String hql =
+	 * "SELECT  l FROM CsaUsageReport l WHERE l.migrationStatus = :migrationStatus AND l.voided = 0"
+	 * ; final Query query =
+	 * this.getCurrentSession().createQuery(hql).setParameter("migrationStatus",
+	 * migrationStatus); return query.list(); }
+	 */
 }

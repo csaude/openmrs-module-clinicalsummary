@@ -34,5 +34,5 @@ public interface ClinicalSummaryModuleDAO {
 
 	void update(CsaUsageReport report);
 
-	List<CsaUsageReport> getByMigrationStatus(String migrationStatus);
+	//List<CsaUsageReport> getByMigrationStatus(String migrationStatus);
 }

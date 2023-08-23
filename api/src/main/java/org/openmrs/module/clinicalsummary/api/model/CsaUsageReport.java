@@ -8,69 +8,118 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.openmrs.BaseOpenmrsData;
 
 @Entity
 @Table(name = "clinicalsummary_usage_report")
-public class CsaUsageReport extends BaseOpenmrsData {
+public class CsaUsageReport {
 
 	private static final long serialVersionUID = 793191237565653211L;
-
-	public static final String PENDING = "PENDING";
-	public static final String MIGRATED = "MIGRATED";
-
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@Column(name = "reporte")
+	private String reporte;
 
-	private String json;
+	@Column(name = "unidade_sanitaria")
+	private String unidadeSanitaria;
 
-	@Column(name = "migration_status")
-	private String migrationStatus;
+	@Column(name = "user_name")
+	private String userName;
 
-	@Column(name = "date_migrated")
-	private Date dateMigrated;
+	@Column(name = "terms")
+	private String terms;
+
+	@Column(name = "application_version")
+	private String applicationVersion;
+
+	@Column(name = "location")
+	private String location;
+
+	@Column(name = "location_uuid")
+	private String locationUuid;
 
 	public CsaUsageReport() {
 	}
 
-	public CsaUsageReport(String json, String migrationStatus) {
-		this.json = json;
-		this.migrationStatus = migrationStatus;
+	public CsaUsageReport(String reporte, String unidadeSanitaria, String userName, String terms, String applicationVersion, String location, String locationUuid) {
+		this.reporte = reporte;
+		this.unidadeSanitaria = unidadeSanitaria;
+		this.userName = userName;
+		this.terms = terms;
+		this.applicationVersion = applicationVersion;
+		this.location = location;
+		this.locationUuid = locationUuid;
 	}
 
-	@Override
+	//@Override
 	public Integer getId() {
 		return this.id;
 	}
 
-	@Override
+	//@Override
 	public void setId(Integer integer) {
 
 	}
-
-	public String getJson() {
-		return json;
+	
+	public String getReporte() {
+		return reporte;
 	}
 
-	public void setJson(String json) {
-		this.json = json;
+	public String getUnidadeSanitaria() {
+		return unidadeSanitaria;
 	}
 
-	public String getMigrationStatus() {
-		return migrationStatus;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setMigrationStatus(String migrationStatus) {
-		this.migrationStatus = migrationStatus;
+	public String getTerms() {
+		return terms;
 	}
 
-	public Date getDateMigrated() {
-		return dateMigrated;
+	public String getApplicationVersion() {
+		return applicationVersion;
 	}
 
-	public void setDateMigrated(Date dateMigrated) {
-		this.dateMigrated = dateMigrated;
+	public String getLocation() {
+		return location;
 	}
+
+	public String getLocationUuid() {
+		return locationUuid;
+	}
+
+	public void setReporte(String reporte) {
+		this.reporte = reporte;
+	}
+
+	public void setUnidadeSanitaria(String unidadeSanitaria) {
+		this.unidadeSanitaria = unidadeSanitaria;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setTerms(String terms) {
+		this.terms = terms;
+	}
+
+	public void setApplicationVersion(String applicationVersion) {
+		this.applicationVersion = applicationVersion;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public void setLocationUuid(String locationUuid) {
+		this.locationUuid = locationUuid;
+	}
+
+
 }
