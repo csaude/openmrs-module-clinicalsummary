@@ -83,5 +83,6 @@ public class HibernateClinicalSummaryModuleDAO implements ClinicalSummaryModuleD
 	 * ; final Query query =
 	 * this.getCurrentSession().createQuery(hql).setParameter("migrationStatus",
 	 * migrationStatus); return query.list(); }
+	 * 
 	 */
 }

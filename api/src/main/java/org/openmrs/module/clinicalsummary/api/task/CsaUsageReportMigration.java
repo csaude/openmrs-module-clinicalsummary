@@ -23,7 +23,7 @@ import org.apache.http.util.EntityUtils;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.clinicalsummary.api.ClinicalSummaryModuleService;
 import org.openmrs.module.clinicalsummary.api.model.CsaUsageReport;
-import org.openmrs.module.clinicalsummary.api.util.DateUtils;
+
 
 public class CsaUsageReportMigration {
 
@@ -67,7 +67,7 @@ public class CsaUsageReportMigration {
             httpPost.addHeader("Content-Type", "application/json");
             httpPost.addHeader("Accept", "application/json");
 
-            httpPost.setEntity(new StringEntity(csaUsageReport.getJson()));
+   //         httpPost.setEntity(new StringEntity(csaUsageReport.getJson()));
 
             HttpResponse response = client.execute(targetHost, httpPost, localcontext);
             //HttpEntity entity = response.getEntity();
@@ -108,8 +108,9 @@ public class CsaUsageReportMigration {
     }
 
 	private void updateMigrationStatus(CsaUsageReport csaUsageReport) {
-        csaUsageReport.setMigrationStatus(CsaUsageReport.MIGRATED);
-        csaUsageReport.setDateMigrated(DateUtils.getCurrentDate());
+        //csaUsageReport.setMigrationStatus(CsaUsageReport.MIGRATED);
+		
+        //csaUsageReport.setDateMigrated(DateUtils.getCurrentDate());
         csaUsageReportService.save(csaUsageReport);
     }
 }

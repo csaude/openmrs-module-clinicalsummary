@@ -25,6 +25,7 @@ public interface ClinicalSummaryModuleDAO {
 	
 	/*
 	 * Add DAO methods here
+	 * 
 	 */
 
 	List<CsaUsageReport> getAll();

@@ -69,5 +69,6 @@ public class ClinicalSummaryModuleServiceImpl extends BaseOpenmrsService impleme
 	/*
 	 * @Override public List<CsaUsageReport> getAllForMigration() { return
 	 * this.dao.getByMigrationStatus(CsaUsageReport.PENDING); }
+	 * 
 	 */
 }

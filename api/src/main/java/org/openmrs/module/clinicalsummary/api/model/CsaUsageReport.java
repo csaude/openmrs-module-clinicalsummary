@@ -55,12 +55,12 @@ public class CsaUsageReport {
 		this.locationUuid = locationUuid;
 	}
 
-	//@Override
+
 	public Integer getId() {
 		return this.id;
 	}
 
-	//@Override
+	
 	public void setId(Integer integer) {
 
 	}
