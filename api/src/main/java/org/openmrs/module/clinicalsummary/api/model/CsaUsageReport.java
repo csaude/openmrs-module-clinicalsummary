@@ -16,7 +16,6 @@ import org.openmrs.BaseOpenmrsData;
 public class CsaUsageReport extends BaseOpenmrsData {
 
 	private static final long serialVersionUID = 793191237565653211L;
-
 	public static final String PENDING = "PENDING";
 	public static final String MIGRATED = "MIGRATED";
 
@@ -24,20 +23,30 @@ public class CsaUsageReport extends BaseOpenmrsData {
 	@GeneratedValue
 	private Integer id;
 
-	private String json;
+	@Column(name = "report")
+	private String report;
 
-	@Column(name = "migration_status")
-	private String migrationStatus;
+	@Column(name = "health_facility")
+	private String unidadeSanitaria;
 
-	@Column(name = "date_migrated")
-	private Date dateMigrated;
+	@Column(name = "user_name")
+	private String userName;
+
+	@Column(name = "confidential_terms")
+	private String terms;
+
+	@Column(name = "app_version")
+	private String applicationVersion;
 
 	public CsaUsageReport() {
 	}
 
-	public CsaUsageReport(String json, String migrationStatus) {
-		this.json = json;
-		this.migrationStatus = migrationStatus;
+	public CsaUsageReport(String report, String unidadeSanitaria, String userName, String terms, String applicationVersion) {
+		this.report = report;
+		this.unidadeSanitaria = unidadeSanitaria;
+		this.userName = userName;
+		this.terms = terms;
+		this.applicationVersion = applicationVersion;
 	}
 
 	@Override
@@ -50,27 +59,43 @@ public class CsaUsageReport extends BaseOpenmrsData {
 
 	}
 
-	public String getJson() {
-		return json;
+	public String getReport() {
+		return report;
 	}
 
-	public void setJson(String json) {
-		this.json = json;
+	public void setReport(String reporte) {
+		this.report = reporte;
 	}
 
-	public String getMigrationStatus() {
-		return migrationStatus;
+	public String getUnidadeSanitaria() {
+		return unidadeSanitaria;
 	}
 
-	public void setMigrationStatus(String migrationStatus) {
-		this.migrationStatus = migrationStatus;
+	public void setUnidadeSanitaria(String unidadeSanitaria) {
+		this.unidadeSanitaria = unidadeSanitaria;
 	}
 
-	public Date getDateMigrated() {
-		return dateMigrated;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setDateMigrated(Date dateMigrated) {
-		this.dateMigrated = dateMigrated;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getTerms() {
+		return terms;
+	}
+
+	public void setTerms(String terms) {
+		this.terms = terms;
+	}
+
+	public String getApplicationVersion() {
+		return applicationVersion;
+	}
+
+	public void setApplicationVersion(String applicationVersion) {
+		this.applicationVersion = applicationVersion;
 	}
 }

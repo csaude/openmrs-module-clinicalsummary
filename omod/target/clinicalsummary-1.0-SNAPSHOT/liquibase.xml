@@ -18,13 +18,19 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="json" type="text">
-                <constraints nullable="false"/>
+            <column name="report" type="varchar(200)">
+                <constraints nullable="true"/>
             </column>
-            <column name="migration_status" type="varchar(200)">
-                <constraints nullable="false"/>
+            <column name="health_facility" type="varchar(200)">
+                <constraints nullable="true"/>
             </column>
-            <column name="date_migrated" type="datetime">
+            <column name="user_name" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="confidential_terms" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="app_version" type="varchar(200)">
                 <constraints nullable="true"/>
             </column>
             <column name="creator" type="int">
@@ -46,4 +52,5 @@
             </column>
         </createTable>
     </changeSet>
+
 </databaseChangeLog>

@@ -11,20 +11,20 @@ import java.io.IOException;
 public class ClinicalSummaryReportProcessorTask extends AbstractTask {
 
     private final Log log = LogFactory.getLog(ClinicalSummaryReportProcessorTask.class);
-    private final CsaUsageReportMigration csaUsageReportMigration;
+    private CsaUsageReportMigration csaUsageReportMigration;
 
     public ClinicalSummaryReportProcessorTask() {
-        this.csaUsageReportMigration = new CsaUsageReportMigration();
+        //this.csaUsageReportMigration = new CsaUsageReportMigration();
     }
     @Override
     public void execute() {
-        Context.openSession();
+        /*Context.openSession();
         try {
             this.csaUsageReportMigration.doMigration();
         } catch (IOException | AuthenticationException e) {
             log.error("Could not send reports: ",e);
             throw new RuntimeException(e);
         }
-        Context.closeSession();
+        Context.closeSession();*/
     }
 }

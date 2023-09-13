@@ -67,7 +67,7 @@ public class CsaUsageReportMigration {
             httpPost.addHeader("Content-Type", "application/json");
             httpPost.addHeader("Accept", "application/json");
 
-            httpPost.setEntity(new StringEntity(csaUsageReport.getJson()));
+            //httpPost.setEntity(new StringEntity(csaUsageReport.getJson()));
 
             HttpResponse response = client.execute(targetHost, httpPost, localcontext);
             //HttpEntity entity = response.getEntity();
@@ -108,8 +108,8 @@ public class CsaUsageReportMigration {
     }
 
 	private void updateMigrationStatus(CsaUsageReport csaUsageReport) {
-        csaUsageReport.setMigrationStatus(CsaUsageReport.MIGRATED);
-        csaUsageReport.setDateMigrated(DateUtils.getCurrentDate());
+        //csaUsageReport.setMigrationStatus(CsaUsageReport.MIGRATED);
+        //csaUsageReport.setDateMigrated(DateUtils.getCurrentDate());
         csaUsageReportService.save(csaUsageReport);
     }
 }
