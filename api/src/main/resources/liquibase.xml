@@ -33,6 +33,9 @@
             <column name="app_version" type="varchar(200)">
                 <constraints nullable="true"/>
             </column>
+            <column name="date_opened" type="datetime">
+                <constraints nullable="true"/>
+            </column>
             <column name="creator" type="int">
                 <constraints nullable="false"/>
             </column>

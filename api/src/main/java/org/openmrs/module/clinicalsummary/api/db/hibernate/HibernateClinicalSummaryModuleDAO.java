@@ -14,8 +14,13 @@
 package org.openmrs.module.clinicalsummary.api.db.hibernate;
 
 import java.lang.reflect.Method;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
@@ -80,6 +85,83 @@ public class HibernateClinicalSummaryModuleDAO implements ClinicalSummaryModuleD
 	public List<CsaUsageReport> getByMigrationStatus(String migrationStatus) {
 		final String hql = "SELECT  l FROM CsaUsageReport l WHERE l.migrationStatus = :migrationStatus AND l.voided = 0";
 		final Query query = this.getCurrentSession().createQuery(hql).setParameter("migrationStatus", migrationStatus);
+		return query.list();
+	}
+
+	@Override
+	public CsaUsageReport getByUuid(String uuid) {
+		final String hql = "SELECT  l FROM CsaUsageReport l WHERE l.uuid = :uuid AND l.voided = 0";
+		final Query query = this.getCurrentSession().createQuery(hql).setParameter("uuid", uuid);
+		List list = query.list();
+		return (CsaUsageReport) list.get(0);
+	}
+
+	@Override
+	public List<CsaUsageReport> getByHealthFacilityAndUsernameAndIssueDateAndApplicationVersion(String healthFacility,
+			String Username, Date startDate, Date endDate, String appVersion) {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("SELECT  l FROM CsaUsageReport l ");
+		if (StringUtils.isBlank(healthFacility) && StringUtils.isBlank(Username) && StringUtils.isBlank(appVersion)
+				&& startDate == null && endDate == null) {
+			throw new RuntimeException(
+					"Fill at least one of the following search parameters: healthFacility, Username, appVersion. Or fill both startDate and endDate!");
+		}
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		if (!StringUtils.isBlank(healthFacility) || !StringUtils.isBlank(Username) || !StringUtils.isBlank(appVersion)
+				|| startDate != null || endDate != null) {
+			builder.append(" WHERE ");
+			if (!StringUtils.isBlank(healthFacility)) {
+				builder.append(
+						!builder.toString().contains(":healthFacility") ? ((builder.toString().contains(":Username")
+								|| builder.toString().contains(":startDate") || builder.toString().contains(":endDate")
+								|| builder.toString().contains(":appVersion"))
+										? " AND l.unidadeSanitaria = :healthFacility "
+										: " l.unidadeSanitaria = :healthFacility  ")
+								: "");
+				parameters.put("healthFacility", healthFacility);
+			}
+			if (!StringUtils.isBlank(Username)) {
+				builder.append(
+						!builder.toString().contains(":Username") ? ((builder.toString().contains(":healthFacility")
+								|| builder.toString().contains(":startDate") || builder.toString().contains(":endDate")
+								|| builder.toString().contains(":appVersion")) ? " AND l.userName = :Username  "
+										: " l.userName = :Username  ")
+								: "");
+				parameters.put("Username", Username);
+			}
+			if (startDate != null && endDate != null) {
+				builder.append(!builder.toString().contains(":startDate") && !builder.toString().contains(":endDate")
+						? ((builder.toString().contains(":Username") || builder.toString().contains(":healthFacility")
+								|| builder.toString().contains(":appVersion"))
+										? " AND l.dateOpened BETWEEN :startDate AND :endDate "
+										: " l.dateOpened BETWEEN :startDate AND :endDate ")
+						: "");
+				parameters.put("startDate", startDate);
+				parameters.put("endDate", endDate);
+			}
+			if (!StringUtils.isBlank(appVersion)) {
+				builder.append(!builder.toString().contains(":appVersion") ? ((builder.toString().contains(":Username")
+						|| builder.toString().contains(":startDate") || builder.toString().contains(":endDate")
+						|| builder.toString().contains(":healthFacility")) ? " AND l.applicationVersion = :appVersion  "
+								: " l.applicationVersion = :appVersion  ")
+						: "");
+				parameters.put("appVersion", appVersion);
+			}
+		}
+
+		final Query query = this.getCurrentSession().createQuery(builder.toString());
+
+		Set<String> keys = parameters.keySet();
+		for (String key : keys) {
+			if ("startDate".equalsIgnoreCase(key) || "endDate".equalsIgnoreCase(key)) {
+				Date value = (Date) parameters.get(key);
+				query.setParameter(key, value);
+			} else {
+				String value = (String) parameters.get(key);
+				query.setParameter(key, value);
+			}
+		}
+
 		return query.list();
 	}
 }

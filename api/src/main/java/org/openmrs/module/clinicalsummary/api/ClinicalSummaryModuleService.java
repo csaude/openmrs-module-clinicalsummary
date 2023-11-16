@@ -13,14 +13,15 @@
  */
 package org.openmrs.module.clinicalsummary.api;
 
+import java.util.List;
+
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.clinicalsummary.api.model.CsaUsageReport;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 /**
- * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
+ * This service exposes module's core functionality. It is a Spring managed bean
+ * which is configured in moduleApplicationContext.xml.
  * <p>
  * It can be accessed only via Context:<br>
  * <code>
@@ -31,7 +32,7 @@ import java.util.List;
  */
 @Transactional
 public interface ClinicalSummaryModuleService extends OpenmrsService {
-     
+
 	/*
 	 * Add service methods here
 	 * 
@@ -43,4 +44,9 @@ public interface ClinicalSummaryModuleService extends OpenmrsService {
 	List<CsaUsageReport> getAll();
 
 	List<CsaUsageReport> getAllForMigration();
+
+	CsaUsageReport getByUuid(String uuid);
+
+	List<CsaUsageReport> getByHealthFacilityAndUsernameAndIssueDateAndApplicationVersion(String healthFacility,
+			String Username, String startDate, String endDate, String appVersion);
 }

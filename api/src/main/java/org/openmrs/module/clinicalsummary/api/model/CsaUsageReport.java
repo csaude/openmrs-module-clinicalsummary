@@ -20,7 +20,7 @@ public class CsaUsageReport extends BaseOpenmrsData {
 	public static final String MIGRATED = "MIGRATED";
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "report")
@@ -38,15 +38,11 @@ public class CsaUsageReport extends BaseOpenmrsData {
 	@Column(name = "app_version")
 	private String applicationVersion;
 
-	public CsaUsageReport() {
-	}
+	@Column(name = "date_opened")
+	private Date dateOpened;
 
-	public CsaUsageReport(String report, String unidadeSanitaria, String userName, String terms, String applicationVersion) {
-		this.report = report;
-		this.unidadeSanitaria = unidadeSanitaria;
-		this.userName = userName;
-		this.terms = terms;
-		this.applicationVersion = applicationVersion;
+	public CsaUsageReport() {
+		super();
 	}
 
 	@Override
@@ -55,8 +51,8 @@ public class CsaUsageReport extends BaseOpenmrsData {
 	}
 
 	@Override
-	public void setId(Integer integer) {
-
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getReport() {
@@ -97,5 +93,13 @@ public class CsaUsageReport extends BaseOpenmrsData {
 
 	public void setApplicationVersion(String applicationVersion) {
 		this.applicationVersion = applicationVersion;
+	}
+
+	public Date getDateOpened() {
+		return dateOpened;
+	}
+
+	public void setDateOpened(Date dateOpened) {
+		this.dateOpened = dateOpened;
 	}
 }
