@@ -13,10 +13,11 @@
  */
 package org.openmrs.module.clinicalsummary.api.db;
 
+import java.util.Date;
+import java.util.List;
+
 import org.openmrs.module.clinicalsummary.api.ClinicalSummaryModuleService;
 import org.openmrs.module.clinicalsummary.api.model.CsaUsageReport;
-
-import java.util.List;
 
 /**
  *  Database methods for {@link ClinicalSummaryModuleService}.
@@ -35,4 +36,8 @@ public interface ClinicalSummaryModuleDAO {
 	void update(CsaUsageReport report);
 
 	List<CsaUsageReport> getByMigrationStatus(String migrationStatus);
+	
+	CsaUsageReport getByUuid(String uuid);
+	
+	List<CsaUsageReport> getByHealthFacilityAndUsernameAndIssueDateAndApplicationVersion(String healthFacility, String Username, Date startDate, Date endDate, String appVersion);
 }
