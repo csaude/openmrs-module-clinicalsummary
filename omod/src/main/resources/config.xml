@@ -11,20 +11,25 @@
 	<description>
 		${project.parent.description}
 	</description>
-	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
+	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf
+	</updateURL>
 	<require_version>${openMRSVersion}</require_version>
 	<!-- / Module Properties -->
 
-	
+	<require_modules>
+		<require_module version="${webservicesRestVersion}">org.openmrs.module.webservices.rest
+		</require_module>
+	</require_modules>
+
+
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.ClinicalSummaryModuleActivator</activator>
-	
-	
+	<activator>${project.parent.groupId}.ClinicalSummaryModuleActivator
+	</activator>
+
+
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-				
-		ClinicalSummaryModule.hbm.xml
-				
+		CsaUsageReport.hbm.xml
 	</mappingFiles>
 
 	<!-- Internationalization -->

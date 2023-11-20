@@ -21,6 +21,7 @@
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- Add here beans related to the web context -->
-
+	<bean class="org.apache.commons.lang3.StringUtils"/>
+	<context:component-scan base-package="org.openmrs.module.clinicalsummary.web.controller" />
 		
 </beans>
