@@ -1,0 +1,16 @@
+.git/
+.idea/
+.settings/
+.classpath
+.project
+
+omod/.settings/
+omod/target/
+omod/.classpath
+omod/.project
+
+api/.settings/
+api/target/
+api/.classpath
+api/.project
+
