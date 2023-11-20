@@ -1,16 +1,19 @@
-.git/
-.idea/
-.settings/
+#### ROOT
 .classpath
 .project
+.git/
+target/
+.settings/
 
-omod/.settings/
-omod/target/
-omod/.classpath
-omod/.project
-
-api/.settings/
+#### API
 api/target/
+api/.settings/
 api/.classpath
 api/.project
 
+
+#### OMOD
+omod/target/
+omod/.settings/
+omod/.classpath
+omod/.project
