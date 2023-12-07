@@ -9,11 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.openmrs.BaseOpenmrsData;
+import org.openmrs.BaseChangeableOpenmrsData;
 
 @Entity
 @Table(name = "clinicalsummary_usage_report")
-public class CsaUsageReport extends BaseOpenmrsData {
+public class CsaUsageReport extends BaseChangeableOpenmrsData {
 
 	private static final long serialVersionUID = 793191237565653211L;
 	public static final String PENDING = "PENDING";
