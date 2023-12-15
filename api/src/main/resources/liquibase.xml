@@ -45,7 +45,7 @@
             <column name="voided" type="tinyint" defaultValueNumeric="0">
                 <constraints nullable="false"/>
             </column>
-            <column name="voided_by" type="int" defaultValueNumeric="0" />
+            <column name="voided_by" type="int" defaultValue="null" />
             <column name="date_voided" type="datetime"/>
             <column name="void_reason" type="varchar(255)" defaultValue="null"/>
             <column name="changed_by" type="int"/>
